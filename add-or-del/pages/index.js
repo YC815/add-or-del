@@ -1,7 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Index = () => {
   const [x, setX] = useState(0)
+
+  useEffect(() => {
+    if (!x) {
+      const timer = setTimeout(() => {
+        setX(0)
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [x])
 
   return (
     <div style={{ backgroundColor: '#333', height: '100vh' }}>
